@@ -15,10 +15,9 @@ import stjit from "./assets/stjit.jpg";
 import ecommerce from "./assets/projects/ecommerce.png";
 import webapplication from "./assets/projects/webapplication.png";
 import porfolio from "./assets/projects/porfolio.png";
-import jspiders from "./assets/jspiders.jpg"
-import pgmanagement from "./assets/projects/pgmanagement.png"
+import jspiders from "./assets/jspiders.jpg";
+import pgmanagement from "./assets/projects/pgmanagement.png";
 import Skill from "./Skill";
-
 
 export default function App() {
   return (
@@ -27,7 +26,9 @@ export default function App() {
       <nav className="fixed top-0 w-full bg-white  shadow-lg z-50 backdrop-blur bg-opacity-80">
         <div className="max-w-6xl mx-auto flex justify-between items-center p-4">
           <div className="flex items-center gap-3">
-            <h1 className="rounded-xl px-3 py-1 text-2xl text-white font-bold bg-indigo-600 shadow-lg">KA</h1>
+            <h1 className="rounded-xl px-3 py-1 text-2xl text-white font-bold bg-indigo-600 shadow-lg">
+              KA
+            </h1>
             <h1 className="text-2xl font-bold">Kartik Avaghan</h1>
           </div>
 
@@ -40,7 +41,11 @@ export default function App() {
               "projects",
               "contact",
             ].map((item) => (
-              <a key={item} href={`#${item}`} className="hover:text-indigo-600 transition">
+              <a
+                key={item}
+                href={`#${item}`}
+                className="hover:text-indigo-600 transition"
+              >
                 {item.charAt(0).toUpperCase() + item.slice(1)}
               </a>
             ))}
@@ -56,19 +61,24 @@ export default function App() {
               Hi, I am <span className="text-indigo-600">Kartik Avaghan</span>
             </h2>
             <p className="text-lg text-gray-700 max-w-md">
-              Full Stack Developer specializing in Java Spring Boot and React, dedicated to building modern, scalable, and user‑focused applications.
+              Full Stack Developer specializing in Java Spring Boot and React,
+              dedicated to building modern, scalable, and user‑focused
+              applications.
             </p>
             <div className="flex gap-4">
-            <a 
-  href="/Kartik_Resume.pdf"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="px-6 py-3 bg-indigo-600 text-white rounded-xl shadow-lg hover:bg-indigo-700 transition inline-block"
->
-  Download Resume
-</a>
+              <a
+                href="/Kartik_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-indigo-600 text-white rounded-xl shadow-lg hover:bg-indigo-700 transition inline-block"
+              >
+                Download Resume
+              </a>
 
-              <a href="#projects" className="px-6 py-3 bg-white text-indigo-600 border border-indigo-600 rounded-xl shadow hover:bg-indigo-50 transition">
+              <a
+                href="#projects"
+                className="px-6 py-3 bg-white text-indigo-600 border border-indigo-600 rounded-xl shadow hover:bg-indigo-50 transition"
+              >
                 View Projects
               </a>
             </div>
@@ -85,63 +95,87 @@ export default function App() {
       </section>
 
       {/* Skills */}
-      
 
       {/* About */}
-     <section id="about" className="py-15 bg-white">
-  <div className="max-w-6xl mx-auto p-6">
-    <h2 className="text-3xl font-bold mb-6">About Me</h2>
+      <section id="about" className="py-15 bg-white">
+        <div className="max-w-6xl mx-auto p-6">
+          <h2 className="text-3xl font-bold mb-6">About Me</h2>
 
-    <div className="flex flex-col md:flex-row gap-10">
+          <div className="flex flex-col md:flex-row gap-10">
+            {/* LEFT SIDE */}
+            <div className=" space-y-6">
+              <p className="text-lg text-gray-700 leading-relaxed max-w-2xl">
+                I am a passionate Full Stack Developer with a strong foundation
+                in Java Spring Boot for backend development and React + Tailwind
+                for building efficient frontend interfaces.
+              </p>
 
-      {/* LEFT SIDE */}
-      <div className=" space-y-6">
-        <p className="text-lg text-gray-700 leading-relaxed max-w-2xl">
-          I am a passionate Full Stack Developer with a strong foundation in Java Spring Boot for backend development and React + Tailwind for building efficient frontend interfaces.
-        </p>
+              <ul className="text-lg text-gray-700 leading-relaxed list-disc list-inside">
+                <li>
+                  Strong skills in HTML, CSS, JavaScript, React, MySql and Java.
+                </li>
+                <li>
+                  Focused on writing clean, scalable, and maintainable code.
+                </li>
+                <li>
+                  Dedicated to building responsive and user-friendly interfaces.
+                </li>
+              </ul>
+            </div>
 
-        <ul className="text-lg text-gray-700 leading-relaxed list-disc list-inside">
-          <li>Strong skills in HTML, CSS, JavaScript, React, MySql and Java.</li>
-          <li>Focused on writing clean, scalable, and maintainable code.</li>
-          <li>Dedicated to building responsive and user-friendly interfaces.</li>
-        </ul>
-      </div>
-
-      {/* RIGHT SIDE = CONTACT INFO ONLY */}
-      <div className="rounded-xl border-t-4 border-indigo-600 shadow-xl px-10  bg-white transition-all duration-200 hover:-translate-y-1
-">
-        <h2 className="text-xl font-semibold mb-2 pt-4">Contact Info</h2>
-        <p className="font-semibold">Bengaluru, India</p>
-        <p className="flex items-center gap-2 py-2"><Mail size={18} className="text-indigo-600"/><a
-              href="mailto:avaghankartik@gmail.com"
-              className="text-blue-600 hover:underline"
+            {/* RIGHT SIDE = CONTACT INFO ONLY */}
+            <div
+              className="rounded-xl border-t-4 border-indigo-600 shadow-xl px-10  bg-white transition-all duration-200 hover:-translate-y-1
+"
             >
-              avaghankartik@gmail.com
-            </a></p>
-        <p className="flex items-center gap-2 "><Phone size={18} className="text-indigo-600"/> <a
-              href="tel:+917349524086"
-              className="text-blue-600 hover:underline"
-            >
-              +91 7349524086
-            </a></p>
+              <h2 className="text-xl font-semibold mb-2 pt-4">Contact Info</h2>
+              <p className="font-semibold">Bengaluru, India</p>
+              <p className="flex items-center gap-2 py-2">
+                <Mail size={18} className="text-indigo-600" />
+                <a
+                  href="mailto:avaghankartik@gmail.com"
+                  className="text-blue-600 hover:underline"
+                >
+                  avaghankartik@gmail.com
+                </a>
+              </p>
+              <p className="flex items-center gap-2 ">
+                <Phone size={18} className="text-indigo-600" />{" "}
+                <a
+                  href="tel:+917349524086"
+                  className="text-blue-600 hover:underline"
+                >
+                  +91 7349524086
+                </a>
+              </p>
 
-        <div className="flex gap-2 items-center mt-6 mb-4">
-          <Linkedin size={18} className="text-blue-600"/>
-          <a href="https://www.linkedin.com/in/kartik-r-avaghan/"
-              target="_blank" className="flex items-center  hover:text-indigo-700 hover:underline  pr-4"> LinkedIn</a>
+              <div className="flex gap-2 items-center mt-6 mb-4">
+                <Linkedin size={18} className="text-blue-600" />
+                <a
+                  href="https://www.linkedin.com/in/kartik-r-avaghan/"
+                  target="_blank"
+                  className="flex items-center  hover:text-indigo-700 hover:underline  pr-4"
+                >
+                  {" "}
+                  LinkedIn
+                </a>
 
-              <Github size={18} className="text-black"/>
-          <a href="https://github.com/Kartik-Avaghan"
-              target="_blank" className="flex items-center  hover:text-indigo-700 hover:underline"> GitHub</a>
+                <Github size={18} className="text-black" />
+                <a
+                  href="https://github.com/Kartik-Avaghan"
+                  target="_blank"
+                  className="flex items-center  hover:text-indigo-700 hover:underline"
+                >
+                  {" "}
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-    </div>
-  </div>
-</section>
-
-
-<Skill/>
+      <Skill />
 
       {/* <section id="skills" className="py-20 ">
         <h2 className="text-3xl text-center font-bold mb-10">Skills</h2>
@@ -181,145 +215,138 @@ export default function App() {
 
       {/* Education */}
       <section id="education" className="py-20 bg-white">
-  <div className="max-w-6xl mx-auto p-6">
-    <h2 className="text-3xl font-bold mb-8">Education</h2>
+        <div className="max-w-6xl mx-auto p-6">
+          <h2 className="text-3xl font-bold mb-8">Education</h2>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* Card 1 */}
+            <div className="bg-white shadow-xl rounded-xl p-6 border-t-4 border-indigo-600 transition-all duration-300 hover:-translate-y-2">
+              {/* Top: Logo + Institute Info (Side by Side) */}
+              <div className="flex justify-between w-full items-center">
+                {/* Logo */}
+                <img
+                  src={stjit}
+                  alt="College"
+                  className="h-20 w-20 rounded-full shadow object-cover"
+                />
 
-      {/* Card 1 */}
-      <div className="bg-white shadow-xl rounded-xl p-6 border-t-4 border-indigo-600 transition-all duration-300 hover:-translate-y-2">
+                {/* Text Info */}
+                <div className="">
+                  <h2 className="font-semibold text-xl text-gray-900">
+                    STJ Institute Of Technology
+                  </h2>
 
-  {/* Top: Logo + Institute Info (Side by Side) */}
-  <div className="flex justify-between w-full items-center">
-    
-    {/* Logo */}
-    <img 
-      src={stjit} 
-      alt="College" 
-      className="h-20 w-20 rounded-full shadow object-cover"
-    />
+                  <p className="text-gray-600 mt-1">
+                    Bachelors in Electronics and Communication Engineering
+                  </p>
 
-    {/* Text Info */}
-    <div className="">
-      <h2 className="font-semibold text-xl text-gray-900">
-        STJ Institute Of Technology
-      </h2>
+                  <p className="text-gray-700 font-medium mt-2">2021 – 2025</p>
+                </div>
+              </div>
 
-      <p className="text-gray-600 mt-1">
-        Bachelors in Electronics and Communication Engineering
-      </p>
+              {/* Bottom: Bullet Points */}
+              <ul className="mt-6 text-gray-700 space-y-1 list-disc list-inside">
+                <li>
+                  Studied core electronics subjects and communication systems.
+                </li>
+                <li>
+                  Implemented several projects based on Electronics Engineering
+                  Course.
+                </li>
+              </ul>
+            </div>
 
-      <p className="text-gray-700 font-medium mt-2">
-        2021 – 2025
-      </p>
-    </div>
+            {/* Card 2 */}
+            <div className="bg-white shadow-xl rounded-xl p-6 border-b-4 border-indigo-600 transition-all duration-300 hover:-translate-y-2">
+              {/* Top Row → Image + Institute Info Side by Side */}
+              <div className="flex justify-around items-center w-full">
+                {/* Logo */}
+                <img
+                  src={jspiders}
+                  alt="JSpiders"
+                  className="h-20 w-20 rounded-full shadow object-cover"
+                />
 
-  </div>
+                {/* Institute Info */}
+                <div className="">
+                  <h2 className="font-semibold text-xl">
+                    JSpiders Training Institute
+                  </h2>
+                  <p className="text-gray-600 mt-1">
+                    Java Full Stack Developer
+                  </p>
+                  <p className="text-gray-700 font-medium mt-2">
+                    07/2025 – 11/2025
+                  </p>
+                </div>
+              </div>
 
-  {/* Bottom: Bullet Points */}
-  <ul className="mt-6 text-gray-700 space-y-1 list-disc list-inside">
-    <li>Studied core electronics subjects and communication systems.</li>
-    <li>Implemented several projects based on Electronics Engineering Course.</li>
-  </ul>
-
-</div>
-
-
-
-        
-      
-
-      {/* Card 2 */}
-      <div className="bg-white shadow-xl rounded-xl p-6 border-b-4 border-indigo-600 transition-all duration-300 hover:-translate-y-2">
-
-  {/* Top Row → Image + Institute Info Side by Side */}
-  <div className="flex justify-around items-center w-full">
-    
-    {/* Logo */}
-    <img 
-      src={jspiders} 
-      alt="JSpiders" 
-      className="h-20 w-20 rounded-full shadow object-cover"
-    />
-
-    {/* Institute Info */}
-    <div className="">
-      <h2 className="font-semibold text-xl">JSpiders Training Institute</h2>
-      <p className="text-gray-600 mt-1">Java Full Stack Developer</p>
-      <p className="text-gray-700 font-medium mt-2">07/2025 – 11/2025</p>
-    </div>
-
-  </div>
-
-  {/* Bullet Points */}
-  <ul className="mt-6 text-gray-700 space-y-1 list-disc list-inside">
-    <li>Learning Java, Spring Boot, SQL, and backend development.</li>
-    <li>Working on real-world full-stack projects with React.</li>
-  </ul>
-
-</div>
-
-
-    </div>
-  </div>
-</section>
-
+              {/* Bullet Points */}
+              <ul className="mt-6 text-gray-700 space-y-1 list-disc list-inside">
+                <li>
+                  Learning Java, Spring Boot, SQL, and backend development.
+                </li>
+                <li>Working on real-world full-stack projects with React.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Experience */}
       <section id="experience" className="py-20">
-  <div className="max-w-6xl mx-auto px-4 sm:px-6">
-    
-    <h2 className="text-3xl font-bold mb-10 text-left sm:text-left">
-      Experience
-    </h2>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl font-bold mb-10 text-left sm:text-left">
+            Experience
+          </h2>
 
-    {/* Card 1 */}
-    <div className="rounded-xl shadow-xl p-5 sm:p-6 border-l-4 border-indigo-600 bg-white hover:shadow-2xl transition-all">
-      <div className="flex justify-between items-center sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
-        <h3 className="text-lg sm:text-xl font-semibold flex items-center gap-2">
-          Thincnext
-        </h3>
-        <span className="text-gray-600 text-sm sm:text-base">
-          07/2025 - Present
-        </span>
-      </div>
+          {/* Card 1 */}
+          <div className="rounded-xl shadow-xl p-5 sm:p-6 border-l-4 border-indigo-600 bg-white hover:shadow-2xl transition-all">
+            <div className="flex justify-between items-center sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+              <h3 className="text-lg sm:text-xl font-semibold flex items-center gap-2">
+                Thincnext
+              </h3>
+              <span className="text-gray-600 text-sm sm:text-base">
+                07/2025 - Present
+              </span>
+            </div>
 
-      <ul className="list-disc list-inside text-gray-700 mt-4 text-base sm:text-lg space-y-1">
-        <li>
-          Software Developer – 
-          <span className="font-semibold"> thincnext Pvt. Limited</span>
-        </li>
-        <li>Worked on Java Spring Boot backend APIs.</li>
-        <li>Built interactive UI with React & Tailwind.</li>
-        <li>Collaborated with senior developers on full-stack modules.</li>
-      </ul>
-    </div>
+            <ul className="list-disc list-inside text-gray-700 mt-4 text-base sm:text-lg space-y-1">
+              <li>
+                Software Developer –
+                <span className="font-semibold"> thincnext Pvt. Limited</span>
+              </li>
+              <li>Worked on Java Spring Boot backend APIs.</li>
+              <li>Built interactive UI with React & Tailwind.</li>
+              <li>
+                Collaborated with senior developers on full-stack modules.
+              </li>
+            </ul>
+          </div>
 
-    {/* Card 2 */}
-    <div className="rounded-xl shadow-xl mt-8 p-5 sm:p-6 border-l-4 border-indigo-600 bg-white hover:shadow-2xl transition-all">
-      <div className="flex justify-between items-center  sm:flex  sm:items-center sm:justify-between gap-2 sm:gap-0">
-        <h3 className="text-lg sm:text-xl font-semibold flex items-center  gap-2">
-          Intern @ Thincnext
-        </h3>
-        <span className="text-gray-600 text-sm sm:text-base">
-          02/2025 - 06/2025
-        </span>
-      </div>
+          {/* Card 2 */}
+          <div className="rounded-xl shadow-xl mt-8 p-5 sm:p-6 border-l-4 border-indigo-600 bg-white hover:shadow-2xl transition-all">
+            <div className="flex justify-between items-center  sm:flex  sm:items-center sm:justify-between gap-2 sm:gap-0">
+              <h3 className="text-lg sm:text-xl font-semibold flex items-center  gap-2">
+                Intern @ Thincnext
+              </h3>
+              <span className="text-gray-600 text-sm sm:text-base">
+                02/2025 - 06/2025
+              </span>
+            </div>
 
-      <ul className="list-disc list-inside text-gray-700 mt-4 text-base sm:text-lg space-y-1">
-        <li>
-          Junior Developer Intern – 
-          <span className="font-semibold"> thincnext Pvt. Limited</span>
-        </li>
-        <li>Worked on Sree-LPG E-Commerce website.</li>
-        <li>Built interactive UI with Shopify.</li>
-        <li>Collaborated with senior developers.</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
+            <ul className="list-disc list-inside text-gray-700 mt-4 text-base sm:text-lg space-y-1">
+              <li>
+                Junior Developer Intern –
+                <span className="font-semibold"> thincnext Pvt. Limited</span>
+              </li>
+              <li>Worked on Sree-LPG E-Commerce website.</li>
+              <li>Built interactive UI with Shopify.</li>
+              <li>Collaborated with senior developers.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       {/* Projects */}
       <section id="projects" className="py-20 bg-white ">
@@ -331,41 +358,83 @@ export default function App() {
               {
                 img: pgmanagement,
                 title: "PG Management",
-                desc: "Role‑based PG management system allowing tenant allocation.",
-                stack: ["Spring Boot", "React", "MySQL", "Tailwind CSS"],
+                desc: [
+                "A role-based PG management system offering tenant profiles, room allocation, and complaint management.",
+                "Admins handle updates and monitoring through a real-time dashboard, while tenants access their details securely."
+                ],
+                stack: ["Spring Boot", "ReactJS", "MySQL", "Tailwind CSS"],
+                link: "https://github.com/Kartik-Avaghan/pgmanagement",
               },
+
               {
                 img: porfolio,
                 title: "Tailor Dashboard",
-                desc: "Role‑based dashboard with customer measurement capture.",
-                stack: ["Spring Boot", "React", "MySQL", "Tailwind CSS"],
+                desc: [
+                 "The admin can record customer details and capture precise measurements based on the outfit the customer wants to stitch.",
+                 "All measurement and order records are securely stored in the database for easy management and tracking."
+                ],
+                stack: ["Spring Boot", "ReactJS", "MySQL", "Tailwind CSS"],
+                link: "https://github.com/Kartik-Avaghan/portfolio",
               },
+
               {
                 img: webapplication,
                 title: "Interior Design Web Page",
-                desc: "Modern interior design landing page.",
+                desc: [
+                  "Developed key sections of the interior design website, including the About, Projects, and News pages with clean layouts and smooth interactions.",
+               "Fully responsive design optimized for fast performance and seamless navigation across all devices."
+                ],
                 stack: ["HTML", "JavaScript", "Tailwind CSS"],
+                link: "https://github.com/Amit-Bongale/Interior_design",
               },
+
               {
                 img: ecommerce,
                 title: "E-Commerce Website",
-                desc: "Category‑based product fetching demo.",
-                stack: ["React", "Tailwind", "API"],
+                desc: [
+                "Built an e-commerce website using a dummy API with category-wise product listing, search filtering, and routing for seamless navigation.",
+                "Includes dedicated pages for product details, category routing, search filtering, and a complete checkout flow.."
+              ],
+                stack: ["ReactJS", "Tailwind", "API"],
+                link: "https://github.com/Kartik-Avaghan/ecommerce",
               },
             ].map((p, i) => (
-              <div key={i} className="rounded-2xl shadow-xl bg-white   hover:shadow-2xl transition-all duration-300 hover:-translate-y-2
-">
-                <img src={p.img} className="h-60 w-full rounded-t-2xl object-fit" />
-                <div className="p-6">
-                  <h2 className="text-xl font-semibold">{p.title}</h2>
-                  <p className="text-gray-700 mt-2">{p.desc}</p>
-                  <div className="flex flex-wrap gap-2 mt-3 text-sm text-gray-600">
-                    {p.stack.map((s, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-gray-200 rounded-full">{s}</span>
-                    ))}
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <div
+                  key={i}
+                  className="rounded-2xl shadow-xl bg-white   hover:shadow-2xl transition-all duration-300 hover:-translate-y-2
+"
+                >
+                  <img
+                    src={p.img}
+                    className="h-60 w-full rounded-t-2xl object-fit"
+                  />
+                  <div className="p-6">
+                    <h2 className="text-xl font-semibold">{p.title}</h2>
+                    <ul className="text-gray-700 mt-2 list-disc list-inside space-y-1">
+                      {p.desc.map((line, idx) => (
+                        <li key={idx}>{line}</li>
+                      ))}
+                    </ul>
+
+                    <div className="flex flex-wrap gap-2 mt-3 text-sm text-gray-600">
+                      {p.stack.map((s, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 bg-gray-200 rounded-full"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -373,84 +442,80 @@ export default function App() {
 
       {/* Contact */}
       <section id="contact" className="py-20 bg-gray-50">
-  <div className="max-w-6xl mx-auto p-6">
-    <h2 className="text-3xl font-bold mb-8  sm:text-left">Contact</h2>
+        <div className="max-w-6xl mx-auto p-6">
+          <h2 className="text-3xl font-bold mb-8  sm:text-left">Contact</h2>
 
-    <div className="rounded-2xl shadow-xl p-8 bg-white border-l-4 border-indigo-600 hover:shadow-2xl transition-all duration-300">
+          <div className="rounded-2xl shadow-xl p-8 bg-white border-l-4 border-indigo-600 hover:shadow-2xl transition-all duration-300">
+            {/* Intro Text */}
+            <p className="lg:text-xl mb-8 text-gray-800 max-w-3xl leading-relaxed">
+              I’m open to freelance, full-time roles, and collaboration
+              opportunities. Feel free to reach out and I’ll respond as soon as
+              possible.
+            </p>
 
-      {/* Intro Text */}
-      <p className="lg:text-xl mb-8 text-gray-800 max-w-3xl leading-relaxed">
-        I’m open to freelance, full-time roles, and collaboration opportunities.
-        Feel free to reach out and I’ll respond as soon as possible.
-      </p>
+            {/* Contact Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:grid-cols-2">
+              {/* Email */}
+              <div className="flex items-start gap-3 p-4 bg-gray-100 rounded-xl hover:bg-gray-200 transition">
+                <Mail size={24} className="text-indigo-600 flex-shrink-0" />
+                <div className="overflow-hidden">
+                  <p className="font-semibold text-gray-900">Email</p>
+                  <a
+                    href="mailto:avaghankartik@gmail.com"
+                    className="text-blue-600 hover:underline break-words  text-[14px] lg:text-[18px]"
+                  >
+                    avaghankartik@gmail.com
+                  </a>
+                </div>
+              </div>
 
-      {/* Contact Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:grid-cols-2">
+              {/* Phone */}
+              <div className="flex items-start gap-3 p-4 bg-gray-100 rounded-xl hover:bg-gray-200 transition">
+                <Phone size={24} className="text-indigo-600 flex-shrink-0" />
+                <div className="overflow-hidden">
+                  <p className="font-semibold text-gray-900">Phone</p>
+                  <a
+                    href="tel:+917349524086"
+                    className="text-blue-600 hover:underline break-words text-[14px] lg:text-[18px]"
+                  >
+                    +91 7349524086
+                  </a>
+                </div>
+              </div>
 
-        {/* Email */}
-        <div className="flex items-start gap-3 p-4 bg-gray-100 rounded-xl hover:bg-gray-200 transition">
-          <Mail size={24} className="text-indigo-600 flex-shrink-0" />
-          <div className="overflow-hidden">
-            <p className="font-semibold text-gray-900">Email</p>
-            <a
-              href="mailto:avaghankartik@gmail.com"
-              className="text-blue-600 hover:underline break-words  text-[14px] lg:text-[18px]"
-            >
-              avaghankartik@gmail.com
-            </a>
+              {/* LinkedIn */}
+              <div className="flex items-start gap-3 p-4 bg-gray-100 rounded-xl hover:bg-gray-200 transition">
+                <Linkedin size={24} className="text-indigo-600 flex-shrink-0" />
+                <div className="overflow-hidden">
+                  <p className="font-semibold text-gray-900">LinkedIn</p>
+                  <a
+                    href="https://www.linkedin.com/in/kartik-r-avaghan/"
+                    target="_blank"
+                    className="text-blue-600 hover:underline break-words text-[14px] lg:text-[18px]"
+                  >
+                    linkedin.com/in/kartik-r-avaghan
+                  </a>
+                </div>
+              </div>
+
+              {/* GitHub */}
+              <div className="flex items-start gap-3 p-4 bg-gray-100 rounded-xl hover:bg-gray-200 transition">
+                <Github size={24} className="text-indigo-600 flex-shrink-0" />
+                <div className="overflow-hidden">
+                  <p className="font-semibold text-gray-900">GitHub</p>
+                  <a
+                    href="https://github.com/Kartik-Avaghan"
+                    target="_blank"
+                    className="text-blue-600 hover:underline break-words text-[14px] lg:text-[18px]"
+                  >
+                    github.com/Kartik-Avaghan
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* Phone */}
-        <div className="flex items-start gap-3 p-4 bg-gray-100 rounded-xl hover:bg-gray-200 transition">
-          <Phone size={24} className="text-indigo-600 flex-shrink-0" />
-          <div className="overflow-hidden">
-            <p className="font-semibold text-gray-900">Phone</p>
-            <a
-              href="tel:+917349524086"
-              className="text-blue-600 hover:underline break-words text-[14px] lg:text-[18px]"
-            >
-              +91 7349524086
-            </a>
-          </div>
-        </div>
-
-        {/* LinkedIn */}
-        <div className="flex items-start gap-3 p-4 bg-gray-100 rounded-xl hover:bg-gray-200 transition">
-          <Linkedin size={24} className="text-indigo-600 flex-shrink-0" />
-          <div className="overflow-hidden">
-            <p className="font-semibold text-gray-900">LinkedIn</p>
-            <a
-              href="https://www.linkedin.com/in/kartik-r-avaghan/"
-              target="_blank"
-              className="text-blue-600 hover:underline break-words text-[14px] lg:text-[18px]"
-            >
-              linkedin.com/in/kartik-r-avaghan
-            </a>
-          </div>
-        </div>
-
-        {/* GitHub */}
-        <div className="flex items-start gap-3 p-4 bg-gray-100 rounded-xl hover:bg-gray-200 transition">
-          <Github size={24} className="text-indigo-600 flex-shrink-0" />
-          <div className="overflow-hidden">
-            <p className="font-semibold text-gray-900">GitHub</p>
-            <a
-              href="https://github.com/Kartik-Avaghan"
-              target="_blank"
-              className="text-blue-600 hover:underline break-words text-[14px] lg:text-[18px]"
-            >
-              github.com/Kartik-Avaghan
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
+      </section>
 
       {/* Footer */}
       <footer className="py-8 text-center text-gray-700 bg-white">
