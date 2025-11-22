@@ -246,7 +246,7 @@ export default function App() {
     <div className="">
       <h2 className="font-semibold text-xl">JSpiders Training Institute</h2>
       <p className="text-gray-600 mt-1">Java Full Stack Developer</p>
-      <p className="text-gray-700 font-medium mt-2">07/2025 – Present</p>
+      <p className="text-gray-700 font-medium mt-2">07/2025 – 11/2025</p>
     </div>
 
   </div>
