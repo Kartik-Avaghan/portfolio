@@ -67,7 +67,7 @@ export default function App() {
             </p>
             <div className="flex gap-4">
               <a
-                href="/Kartik_Resume.pdf"
+                href="/Kartik_Avaghan.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 bg-indigo-600 text-white rounded-xl shadow-lg hover:bg-indigo-700 transition inline-block"
@@ -177,41 +177,7 @@ export default function App() {
 
       <Skill />
 
-      {/* <section id="skills" className="py-20 ">
-        <h2 className="text-3xl text-center font-bold mb-10">Skills</h2>
-
-        <div className="max-w-6xl mx-auto overflow-hidden">
-          <div className="flex gap-10 px-6 py-4 animate-skill-scroll whitespace-nowrap hide-scrollbar">
-            {[
-              { src: springboot, name: "Spring Boot" },
-              { src: java, name: "Java" },
-              { src: react, name: "React" },
-              { src: tailwind, name: "Tailwind CSS" },
-              { src: js, name: "JavaScript" },
-              { src: html2, name: "HTML" },
-              { src: mysql1, name: "MySQL" },
-              { src: bootstrap, name: "Bootstrap" },
-            ].map((skill, i) => (
-              <div key={i} className="p-6 rounded-xl shadow hover:shadow-lg transition min-w-40 flex flex-col justify-center items-center bg-gray-50 border-b-4  border-indigo-600 ">
-                <img src={skill.src} alt={skill.name} className="h-20 w-20 mb-3" />
-                <p className="font-semibold text-gray-700">{skill.name}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <style>{`
-          .hide-scrollbar::-webkit-scrollbar { display: none; }
-          .hide-scrollbar { scrollbar-width: none; }
-          .animate-skill-scroll {
-            animation: scrollSkills 12s linear infinite;
-          }
-          @keyframes scrollSkills {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-50% - 1.25rem)); }
-          }
-        `}</style>
-      </section> */}
+      
 
       {/* Education */}
       <section id="education" className="py-20 bg-white">
