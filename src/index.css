@@ -6,8 +6,8 @@ html {
 
 body {
   margin: 0;
-  padding: 0;
   min-width: 320px;
+  overflow-x: hidden;
 }
 
 * {
@@ -19,37 +19,459 @@ body {
   color: white;
 }
 
-/* Smooth theme transition */
-body,
-div,
-section,
-nav,
-a,
-button {
-  transition-property: background-color, border-color, color;
-  transition-duration: 300ms;
-}
+/* =====================================================
+   SCROLLBAR
+===================================================== */
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #06b6d4, #3b82f6);
-  border-radius: 20px;
+  background: linear-gradient(
+    #22d3ee,
+    #3b82f6,
+    #8b5cf6
+  );
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #06b6d4;
+  background: linear-gradient(
+    #06b6d4,
+    #2563eb,
+    #7c3aed
+  );
 }
 
-/* Firefox Scrollbar */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: #06b6d4 #0f172a;
+/* =====================================================
+   PREMIUM BACKGROUND GRID
+===================================================== */
+
+.background-grid {
+  background-image:
+    linear-gradient(
+      rgba(6, 182, 212, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 182, 212, 0.08) 1px,
+      transparent 1px
+    );
+
+  background-size: 55px 55px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    black,
+    transparent 85%
+  );
+}
+
+/* =====================================================
+   FLOATING BACKGROUND ORBS
+===================================================== */
+
+.background-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.orb-one {
+  width: 420px;
+  height: 420px;
+  top: -100px;
+  left: -120px;
+  animation: orbFloatOne 14s ease-in-out infinite;
+}
+
+.orb-two {
+  width: 500px;
+  height: 500px;
+  top: 30%;
+  right: -180px;
+  animation: orbFloatTwo 18s ease-in-out infinite;
+}
+
+.orb-three {
+  width: 380px;
+  height: 380px;
+  bottom: 5%;
+  left: 15%;
+  animation: orbFloatThree 16s ease-in-out infinite;
+}
+
+.orb-four {
+  width: 300px;
+  height: 300px;
+  top: 70%;
+  left: 65%;
+  animation: orbFloatFour 20s ease-in-out infinite;
+}
+
+@keyframes orbFloatOne {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(90px, 70px) scale(1.12);
+  }
+}
+
+@keyframes orbFloatTwo {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-100px, 80px) scale(1.08);
+  }
+}
+
+@keyframes orbFloatThree {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(100px, -80px) scale(1.15);
+  }
+}
+
+@keyframes orbFloatFour {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-70px, 70px);
+  }
+}
+
+/* =====================================================
+   FLOATING PARTICLES
+===================================================== */
+
+.particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.7);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.8);
+}
+
+.particle-one {
+  top: 18%;
+  left: 12%;
+  animation: particleFloat 7s ease-in-out infinite;
+}
+
+.particle-two {
+  top: 40%;
+  right: 18%;
+  animation: particleFloat 9s ease-in-out infinite reverse;
+}
+
+.particle-three {
+  bottom: 25%;
+  left: 30%;
+  animation: particleFloat 8s ease-in-out infinite;
+}
+
+.particle-four {
+  top: 65%;
+  right: 35%;
+  animation: particleFloat 10s ease-in-out infinite reverse;
+}
+
+.particle-five {
+  top: 10%;
+  right: 42%;
+  animation: particleFloat 6s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: translateY(-35px);
+    opacity: 1;
+  }
+}
+
+/* =====================================================
+   HERO BACKGROUND
+===================================================== */
+
+.hero-grid {
+  background-image:
+    linear-gradient(
+      rgba(6, 182, 212, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 182, 212, 0.06) 1px,
+      transparent 1px
+    );
+
+  background-size: 70px 70px;
+
+  mask-image: radial-gradient(
+    circle at center,
+    black,
+    transparent 75%
+  );
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(70px);
+}
+
+.hero-orb-one {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 10%;
+  background: rgba(6, 182, 212, 0.18);
+  animation: heroOrbOne 9s ease-in-out infinite;
+}
+
+.hero-orb-two {
+  width: 350px;
+  height: 350px;
+  top: 20%;
+  right: 10%;
+  background: rgba(59, 130, 246, 0.18);
+  animation: heroOrbTwo 12s ease-in-out infinite;
+}
+
+.hero-orb-three {
+  width: 280px;
+  height: 280px;
+  bottom: 5%;
+  left: 45%;
+  background: rgba(139, 92, 246, 0.14);
+  animation: heroOrbThree 11s ease-in-out infinite;
+}
+
+@keyframes heroOrbOne {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(80px, 50px);
+  }
+}
+
+@keyframes heroOrbTwo {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-80px, 60px);
+  }
+}
+
+@keyframes heroOrbThree {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+
+  50% {
+    transform: translate(-30%, -60px);
+  }
+}
+
+/* =====================================================
+   PROFILE 3D EFFECT
+===================================================== */
+
+.perspective-container {
+  perspective: 1200px;
+}
+
+.profile-tilt {
+  transform:
+    rotateX(var(--rotate-x, 0deg))
+    rotateY(var(--rotate-y, 0deg));
+  transition: transform 0.25s ease-out;
+  transform-style: preserve-3d;
+}
+
+/* =====================================================
+   PROFILE RINGS
+===================================================== */
+
+.profile-ring {
+  position: absolute;
+  inset: -35px;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.profile-ring-one {
+  border: 1px solid rgba(34, 211, 238, 0.22);
+  animation: spinSlow 20s linear infinite;
+}
+
+.profile-ring-two {
+  inset: -55px;
+  border: 1px dashed rgba(139, 92, 246, 0.2);
+  animation: spinReverse 28s linear infinite;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* =====================================================
+   SPOTLIGHT EFFECT
+===================================================== */
+
+.spotlight-card {
+  isolation: isolate;
+}
+
+.spotlight-effect {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  background: radial-gradient(
+    450px circle at var(--spotlight-x, 50%)
+      var(--spotlight-y, 50%),
+    rgba(34, 211, 238, 0.12),
+    transparent 42%
+  );
+}
+
+.spotlight-card:hover .spotlight-effect {
+  opacity: 1;
+}
+
+/* =====================================================
+   PROJECT CARD
+===================================================== */
+
+.project-card {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    135deg,
+    transparent,
+    rgba(34, 211, 238, 0.5),
+    transparent,
+    rgba(139, 92, 246, 0.4)
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  pointer-events: none;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+/* =====================================================
+   MOBILE PERFORMANCE
+===================================================== */
+
+@media (max-width: 768px) {
+  .background-orb {
+    filter: blur(65px);
+    animation-duration: 20s;
+  }
+
+  .particle {
+    display: none;
+  }
+
+  .profile-ring-two {
+    display: none;
+  }
+
+  .project-card {
+    transform: none !important;
+  }
+
+  .spotlight-effect {
+    display: none;
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  .profile-tilt,
+  .project-card {
+    transform: none !important;
+  }
 }
