@@ -454,14 +454,14 @@ useEffect(() => {
 
             <div className="hidden sm:block">
               <h1
-                className={`font-bold leading-tight ${theme.heading}`}
+                className={`font-bold text-xl leading-tight ${theme.heading}`}
               >
                 Kartik Avaghan
               </h1>
 
-              <p className={`text-xs ${theme.text}`}>
+              {/* <p className={`text-xs ${theme.text}`}>
                 Java Full Stack Developer
-              </p>
+              </p> */}
             </div>
           </a>
 
