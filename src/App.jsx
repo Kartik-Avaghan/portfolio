@@ -1145,7 +1145,7 @@ useEffect(() => {
                 image={jspiders}
                 title="JSpiders Training Institute"
                 subtitle="Java Full Stack Developer"
-                date="07/2025 – 11/2025"
+                date="07/2025 – 12/2025"
                 points={[
                   "Learning Java, Spring Boot, SQL, and backend development.",
                   "Working on real-world full-stack projects with React.",
@@ -1694,7 +1694,7 @@ function HeroProfile({
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className={`absolute -right-3 top-10 z-30 rounded-2xl border px-4 py-3 shadow-xl backdrop-blur-xl sm:-right-8 ${theme.secondaryCard}`}
+        className={`absolute -right-10 top-10 z-30 rounded-2xl border px-4 py-3 shadow-xl backdrop-blur-xl sm:-right-10 ${theme.secondaryCard}`}
       >
         <p className={`text-xs ${theme.text}`}>
           Primary Focus
@@ -2238,7 +2238,7 @@ function EducationCard({
       </div>
 
       <ul
-        className={`mt-7 space-y-3 ${
+        className={`mt-6 space-y-1 ${
           darkMode
             ? "text-slate-400"
             : "text-slate-600"
