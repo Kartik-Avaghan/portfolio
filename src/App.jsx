@@ -425,11 +425,11 @@ useEffect(() => {
           className={`mx-auto flex max-w-7xl items-center justify-between rounded-[1.8rem] border px-4 transition-all duration-500 sm:px-5 ${
             darkMode
               ? hasScrolled
-                ? "border-white/10 bg-slate-950/80 shadow-2xl shadow-black/30 backdrop-blur-2xl"
+                ? "border-white/10 bg-slate-950/80 shadow-2xl shadow-black/40 backdrop-blur-2xl"
                 : "border-white/[0.08] bg-slate-950/60 backdrop-blur-xl"
               : hasScrolled
-              ? "border-white/70 bg-white/80 shadow-xl shadow-slate-300/30 backdrop-blur-2xl"
-              : "border-white bg-white/60 shadow-lg shadow-slate-200/20 backdrop-blur-xl"
+              ? "border-white/70 bg-white/80 shadow-2xl shadow-slate-400/30 backdrop-blur-2xl"
+              : "border-white bg-white/60 shadow-2xl shadow-slate-600/20 backdrop-blur-xl"
           } ${
             hasScrolled
               ? "py-2.5"
