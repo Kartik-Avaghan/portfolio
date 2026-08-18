@@ -163,7 +163,7 @@ const FLOATING_TECH = [
   image: jsImage,
   className:
     // "-right-2 bottom-28 sm:-right-10 sm:bottom-32",
-    "right-1 -bottom-7 hidden -translate-x-1/2 sm:flex",
+    "right-2 bottom-28 flex sm:-right-2 sm:bottom-32",
   duration: 7,
   delay: 1.2,
 },
@@ -179,7 +179,7 @@ const FLOATING_TECH = [
     name: "Flutter",
     image: flutter,
     className:
-      "left-1/3 -bottom-7 hidden -translate-x-1/2 sm:flex",
+      "left-35 -bottom-5 flex -translate-x-1/2 sm:-bottom-7",
     duration: 6,
     delay: 0.8,
   },
