@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   ArrowDown,
   ArrowUpRight,
   BriefcaseBusiness,
+  Check,
   Code2,
+  Copy,
   Database,
   Github,
   Linkedin,
@@ -29,9 +31,129 @@ import kartik from "./assets/kartik.jpeg";
 import stjit from "./assets/stjit.jpg";
 import jspiders from "./assets/jspiders.jpg";
 
+const NAV_ITEMS = [
+  "about",
+  "skills",
+  "education",
+  "experience",
+  "projects",
+  "contact",
+];
+
+const SKILLS = [
+  {
+    category: "Backend Development",
+    icon: <Server size={28} />,
+    skills: [
+      "Java",
+      "Spring Boot",
+      "Spring Security",
+      "RESTful APIs",
+      "JPA / Hibernate",
+      "Microservices",
+    ],
+  },
+  {
+    category: "Frontend Development",
+    icon: <Code2 size={28} />,
+    skills: [
+      "React.js",
+      "JavaScript ES6+",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "Redux Toolkit",
+    ],
+  },
+  {
+    category: "Database & Security",
+    icon: <ShieldCheck size={28} />,
+    skills: [
+      "MySQL",
+      "JWT Authentication",
+      "OAuth2",
+      "RBAC",
+      "API Security",
+      "Database Design",
+    ],
+  },
+  {
+    category: "DevOps & Tools",
+    icon: <Container size={28} />,
+    skills: [
+      "Docker",
+      "Kubernetes Basics",
+      "Jenkins Basics",
+      "Git",
+      "GitHub",
+      "Postman",
+    ],
+  },
+];
+
+const PROJECTS = [
+  {
+    title: "Reride",
+    subtitle: "Vehicle Management & Tracking Platform",
+    icon: <BriefcaseBusiness size={30} />,
+    type: "Company Project",
+    description: [
+      "Developed backend modules for vehicle management including creation, publishing, CRUD operations, and optimized data handling.",
+      "Built an admin dashboard for vehicle inventories, pricing, listing publication, and user management.",
+      "Integrated frontend and backend services for seamless data flow.",
+    ],
+    stack: ["Spring Boot", "React.js", "Redux Toolkit", "MySQL"],
+    link: "https://github.com/Kartik-Avaghan",
+  },
+  {
+    title: "KFCC",
+    subtitle: "Film Chamber Workflow Management System",
+    icon: <Workflow size={30} />,
+    type: "Company Project",
+    description: [
+      "Developed dynamic role-based dashboards for a multi-level workflow management system.",
+      "Implemented role-specific approval processes and concurrent workflow management.",
+      "Integrated React.js modules with Spring Boot REST APIs.",
+    ],
+    stack: ["Spring Boot", "React.js", "Redux Toolkit", "REST APIs"],
+    link: "https://github.com/Kartik-Avaghan",
+  },
+  {
+    title: "PG Management System",
+    subtitle: "Full-Stack Management Platform",
+    icon: <Database size={30} />,
+    type: "Academic Project",
+    description: [
+      "Built a full-stack PG management system with JWT authentication and RBAC.",
+      "Implemented room allocation, complaint management, payment functionality, and CRUD operations.",
+      "Containerized services using Docker.",
+    ],
+    stack: ["Java", "Spring Boot", "React.js", "MySQL", "Docker"],
+    link: "https://github.com/Kartik-Avaghan",
+  },
+  {
+    title: "AI Chatbot",
+    subtitle: "Spring AI & Ollama LLM",
+    icon: <BrainCircuit size={30} />,
+    type: "Academic Project",
+    description: [
+      "Developed an AI-powered chatbot using Spring AI and Ollama.",
+      "Built scalable Spring Boot REST APIs for prompt handling.",
+      "Created a responsive React.js chat interface.",
+    ],
+    stack: ["Java", "Spring Boot", "Spring AI", "Ollama", "React.js"],
+    link: "https://github.com/Kartik-Avaghan",
+  },
+];
+
+const FOCUS_RING =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent";
+
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   const [darkMode, setDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem("portfolio-theme");
@@ -44,149 +166,47 @@ export default function App() {
   });
 
   useEffect(() => {
-    localStorage.setItem(
-      "portfolio-theme",
-      darkMode ? "dark" : "light"
-    );
+    localStorage.setItem("portfolio-theme", darkMode ? "dark" : "light");
   }, [darkMode]);
 
+  // Scroll progress bar + back-to-top visibility
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-
-      const height =
-        document.documentElement.scrollHeight - window.innerHeight;
-
-      const progress =
-        height > 0 ? (scrollTop / height) * 100 : 0;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = height > 0 ? (scrollTop / height) * 100 : 0;
 
       setScrollProgress(progress);
+      setShowBackToTop(scrollTop > 600);
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    "about",
-    "skills",
-    "education",
-    "experience",
-    "projects",
-    "contact",
-  ];
+  // Scroll-spy for active nav item
+  useEffect(() => {
+    const sections = ["hero", ...NAV_ITEMS]
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
 
-  const skills = [
-    {
-      category: "Backend Development",
-      icon: <Server size={28} />,
-      skills: [
-        "Java",
-        "Spring Boot",
-        "Spring Security",
-        "RESTful APIs",
-        "JPA / Hibernate",
-        "Microservices",
-      ],
-    },
-    {
-      category: "Frontend Development",
-      icon: <Code2 size={28} />,
-      skills: [
-        "React.js",
-        "JavaScript ES6+",
-        "HTML5",
-        "CSS3",
-        "Tailwind CSS",
-        "Redux Toolkit",
-      ],
-    },
-    {
-      category: "Database & Security",
-      icon: <ShieldCheck size={28} />,
-      skills: [
-        "MySQL",
-        "JWT Authentication",
-        "OAuth2",
-        "RBAC",
-        "API Security",
-        "Database Design",
-      ],
-    },
-    {
-      category: "DevOps & Tools",
-      icon: <Container size={28} />,
-      skills: [
-        "Docker",
-        "Kubernetes Basics",
-        "Jenkins Basics",
-        "Git",
-        "GitHub",
-        "Postman",
-      ],
-    },
-  ];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+    );
 
-  const projects = [
-    {
-      title: "Reride",
-      subtitle: "Vehicle Management & Tracking Platform",
-      icon: <BriefcaseBusiness size={30} />,
-      type: "Company Project",
-      description: [
-        "Developed backend modules for vehicle management including creation, publishing, CRUD operations, and optimized data handling.",
-        "Built an admin dashboard for vehicle inventories, pricing, listing publication, and user management.",
-        "Integrated frontend and backend services for seamless data flow.",
-      ],
-      stack: ["Spring Boot", "React.js", "Redux Toolkit", "MySQL"],
-      link: "https://github.com/Kartik-Avaghan",
-    },
-    {
-      title: "KFCC",
-      subtitle: "Film Chamber Workflow Management System",
-      icon: <Workflow size={30} />,
-      type: "Company Project",
-      description: [
-        "Developed dynamic role-based dashboards for a multi-level workflow management system.",
-        "Implemented role-specific approval processes and concurrent workflow management.",
-        "Integrated React.js modules with Spring Boot REST APIs.",
-      ],
-      stack: ["Spring Boot", "React.js", "Redux Toolkit", "REST APIs"],
-      link: "https://github.com/Kartik-Avaghan",
-    },
-    {
-      title: "PG Management System",
-      subtitle: "Full-Stack Management Platform",
-      icon: <Database size={30} />,
-      type: "Academic Project",
-      description: [
-        "Built a full-stack PG management system with JWT authentication and RBAC.",
-        "Implemented room allocation, complaint management, payment functionality, and CRUD operations.",
-        "Containerized services using Docker.",
-      ],
-      stack: ["Java", "Spring Boot", "React.js", "MySQL", "Docker"],
-      link: "https://github.com/Kartik-Avaghan",
-    },
-    {
-      title: "AI Chatbot",
-      subtitle: "Spring AI & Ollama LLM",
-      icon: <BrainCircuit size={30} />,
-      type: "Academic Project",
-      description: [
-        "Developed an AI-powered chatbot using Spring AI and Ollama.",
-        "Built scalable Spring Boot REST APIs for prompt handling.",
-        "Created a responsive React.js chat interface.",
-      ],
-      stack: ["Java", "Spring Boot", "Spring AI", "Ollama", "React.js"],
-      link: "https://github.com/Kartik-Avaghan",
-    },
-  ];
+    sections.forEach((section) => observer.observe(section));
+    return () => sections.forEach((section) => observer.unobserve(section));
+  }, []);
 
   const theme = {
-    page: darkMode
-      ? "bg-slate-950 text-white"
-      : "bg-slate-50 text-slate-900",
+    page: darkMode ? "bg-slate-950 text-white" : "bg-slate-50 text-slate-900",
 
     nav: darkMode
       ? "bg-slate-950/80 border-white/10"
@@ -200,13 +220,9 @@ export default function App() {
       ? "bg-white/[0.02] border-white/5"
       : "bg-slate-100/80 border-slate-200",
 
-    text: darkMode
-      ? "text-slate-400"
-      : "text-slate-600",
+    text: darkMode ? "text-slate-400" : "text-slate-600",
 
-    heading: darkMode
-      ? "text-white"
-      : "text-slate-900",
+    heading: darkMode ? "text-white" : "text-slate-900",
 
     badge: darkMode
       ? "bg-white/5 border-white/10 text-slate-300"
@@ -257,7 +273,7 @@ export default function App() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
           <a
             href="#hero"
-            className="flex items-center gap-3"
+            className={`flex items-center gap-3 rounded-xl ${FOCUS_RING}`}
             onClick={() => setMobileMenuOpen(false)}
           >
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 font-bold text-white shadow-lg transition hover:scale-110">
@@ -265,44 +281,47 @@ export default function App() {
             </div>
 
             <div>
-              <h1 className={`font-bold ${theme.heading}`}>
-                Kartik Avaghan
-              </h1>
-
-              <p className={`text-xs ${theme.text}`}>
-                Java Full Stack Developer
-              </p>
+              <h1 className={`font-bold ${theme.heading}`}>Kartik Avaghan</h1>
+              <p className={`text-xs ${theme.text}`}>Java Full Stack Developer</p>
             </div>
           </a>
 
           {/* DESKTOP MENU */}
           <div className="hidden items-center gap-6 lg:flex">
-            {navItems.map((item) => (
+            {NAV_ITEMS.map((item) => (
               <a
                 key={item}
                 href={`#${item}`}
-                className={`text-sm font-medium capitalize transition hover:text-cyan-500 ${theme.text}`}
+                aria-current={activeSection === item ? "true" : undefined}
+                className={`relative rounded text-sm font-medium capitalize transition hover:text-cyan-500 ${FOCUS_RING} ${
+                  activeSection === item ? "text-cyan-500" : theme.text
+                }`}
               >
                 {item}
+                <span
+                  className={`absolute -bottom-1.5 left-0 h-0.5 rounded-full bg-cyan-500 transition-all duration-300 ${
+                    activeSection === item ? "w-full" : "w-0"
+                  }`}
+                />
               </a>
             ))}
 
             {/* THEME BUTTON */}
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className={`flex h-10 w-10 items-center justify-center rounded-xl border transition hover:scale-110 ${
+              className={`flex h-10 w-10 items-center justify-center rounded-xl border transition hover:scale-110 ${FOCUS_RING} ${
                 darkMode
                   ? "border-white/10 bg-white/5 text-yellow-300"
                   : "border-slate-200 bg-slate-100 text-slate-700"
               }`}
-              aria-label="Toggle theme"
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
             >
               {darkMode ? <Sun size={19} /> : <Moon size={19} />}
             </button>
 
             <a
               href="#contact"
-              className="rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 px-5 py-2.5 text-sm font-bold text-white transition hover:scale-105"
+              className={`rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 px-5 py-2.5 text-sm font-bold text-white transition hover:scale-105 ${FOCUS_RING}`}
             >
               Hire Me
             </a>
@@ -312,7 +331,8 @@ export default function App() {
           <div className="flex items-center gap-3 lg:hidden">
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className={`flex h-10 w-10 items-center justify-center rounded-xl border ${
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+              className={`flex h-10 w-10 items-center justify-center rounded-xl border ${FOCUS_RING} ${
                 darkMode
                   ? "border-white/10 bg-white/5 text-yellow-300"
                   : "border-slate-200 bg-slate-100"
@@ -323,10 +343,10 @@ export default function App() {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`flex h-10 w-10 items-center justify-center rounded-xl border ${
-                darkMode
-                  ? "border-white/10 bg-white/5"
-                  : "border-slate-200 bg-slate-100"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+              className={`flex h-10 w-10 items-center justify-center rounded-xl border ${FOCUS_RING} ${
+                darkMode ? "border-white/10 bg-white/5" : "border-slate-200 bg-slate-100"
               }`}
             >
               {mobileMenuOpen ? <X size={21} /> : <Menu size={21} />}
@@ -338,19 +358,21 @@ export default function App() {
         {mobileMenuOpen && (
           <div
             className={`border-t px-5 py-5 backdrop-blur-xl lg:hidden ${
-              darkMode
-                ? "border-white/10 bg-slate-950/95"
-                : "border-slate-200 bg-white/95"
+              darkMode ? "border-white/10 bg-slate-950/95" : "border-slate-200 bg-white/95"
             }`}
           >
             <div className="flex flex-col gap-3">
-              {navItems.map((item) => (
+              {NAV_ITEMS.map((item) => (
                 <a
                   key={item}
                   href={`#${item}`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`rounded-xl px-4 py-3 capitalize transition ${
-                    darkMode
+                  className={`rounded-xl px-4 py-3 capitalize transition ${FOCUS_RING} ${
+                    activeSection === item
+                      ? darkMode
+                        ? "bg-white/10 text-cyan-400"
+                        : "bg-slate-100 text-cyan-600"
+                      : darkMode
                       ? "text-slate-300 hover:bg-white/5"
                       : "text-slate-700 hover:bg-slate-100"
                   }`}
@@ -364,10 +386,7 @@ export default function App() {
       </nav>
 
       {/* HERO */}
-      <section
-        id="hero"
-        className="flex min-h-screen items-center pt-28 pb-16"
-      >
+      <section id="hero" className="flex min-h-screen scroll-mt-28 items-center pt-28 pb-16">
         <div className="mx-auto grid w-full max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-2">
           {/* HERO TEXT */}
           <div className="order-2 lg:order-1">
@@ -380,9 +399,7 @@ export default function App() {
               Hello, I'm
             </p>
 
-            <h2
-              className={`text-5xl font-black leading-tight sm:text-6xl xl:text-7xl ${theme.heading}`}
-            >
+            <h2 className={`text-5xl font-black leading-tight sm:text-6xl xl:text-7xl ${theme.heading}`}>
               Kartik{" "}
               <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 bg-clip-text text-transparent">
                 R Avaghan
@@ -397,8 +414,7 @@ export default function App() {
               Full Stack Developer with{" "}
               <span className={theme.heading}>1+ year of experience</span>{" "}
               building scalable applications using Java, Spring Boot, React.js,
-              MySQL, and RESTful APIs with a strong focus on backend
-              development.
+              MySQL, and RESTful APIs with a strong focus on backend development.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -406,7 +422,7 @@ export default function App() {
                 href="/Kartik_Avaghan.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 px-6 py-4 font-bold text-white shadow-xl transition hover:-translate-y-1"
+                className={`flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 px-6 py-4 font-bold text-white shadow-xl transition hover:-translate-y-1 ${FOCUS_RING}`}
               >
                 Download Resume
                 <ArrowDown size={19} />
@@ -414,7 +430,7 @@ export default function App() {
 
               <a
                 href="#projects"
-                className={`flex items-center justify-center gap-2 rounded-xl border px-6 py-4 font-semibold transition hover:-translate-y-1 ${
+                className={`flex items-center justify-center gap-2 rounded-xl border px-6 py-4 font-semibold transition hover:-translate-y-1 ${FOCUS_RING} ${
                   darkMode
                     ? "border-white/15 bg-white/5 hover:bg-white/10"
                     : "border-slate-300 bg-white hover:bg-slate-100"
@@ -426,16 +442,14 @@ export default function App() {
             </div>
 
             <div className="mt-10 flex flex-wrap gap-3">
-              {["Java", "Spring Boot", "React.js", "MySQL", "REST APIs"].map(
-                (tech) => (
-                  <span
-                    key={tech}
-                    className={`rounded-full border px-4 py-2 text-sm transition ${theme.badge}`}
-                  >
-                    {tech}
-                  </span>
-                )
-              )}
+              {["Java", "Spring Boot", "React.js", "MySQL", "REST APIs"].map((tech) => (
+                <span
+                  key={tech}
+                  className={`rounded-full border px-4 py-2 text-sm transition ${theme.badge}`}
+                >
+                  {tech}
+                </span>
+              ))}
             </div>
           </div>
 
@@ -444,12 +458,10 @@ export default function App() {
             <div className="relative">
               <div className="absolute -inset-8 rounded-full bg-gradient-to-r from-cyan-400/30 via-blue-500/20 to-violet-500/30 blur-3xl animate-pulse" />
 
-              <div
-                className={`relative rounded-[2rem] border p-3 backdrop-blur-xl ${theme.card}`}
-              >
+              <div className={`relative rounded-[2rem] border p-3 backdrop-blur-xl ${theme.card}`}>
                 <img
                   src={kartik}
-                  alt="Kartik Avaghan"
+                  alt="Portrait of Kartik Avaghan"
                   className="h-72 w-72 rounded-[1.5rem] object-cover shadow-2xl sm:h-96 sm:w-96"
                 />
               </div>
@@ -458,9 +470,7 @@ export default function App() {
                 className={`absolute -bottom-5 -left-5 rounded-2xl border px-5 py-4 backdrop-blur-xl ${theme.secondaryCard}`}
               >
                 <p className={`text-xs ${theme.text}`}>Experience</p>
-                <p className="text-xl font-bold text-cyan-500">
-                  1+ Year
-                </p>
+                <p className="text-xl font-bold text-cyan-500">1+ Year</p>
               </div>
 
               <div
@@ -475,7 +485,7 @@ export default function App() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="py-24">
+      <section id="about" className="scroll-mt-28 py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
             number="01"
@@ -485,7 +495,7 @@ export default function App() {
           />
 
           <div className="grid gap-8 lg:grid-cols-[1.4fr_0.8fr]">
-            <div className={`rounded-3xl border p-7 sm:p-10 ${theme.card}`}>
+            <Reveal className={`rounded-3xl border p-7 sm:p-10 ${theme.card}`}>
               <p className={`text-lg leading-8 ${theme.text}`}>
                 I am a Full Stack Developer with strong expertise in backend
                 development using{" "}
@@ -526,14 +536,12 @@ export default function App() {
                   darkMode={darkMode}
                 />
               </div>
-            </div>
+            </Reveal>
 
-            <div className="rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 to-blue-500/10 p-7">
+            <Reveal className="rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 to-blue-500/10 p-7">
               <User className="mb-6 text-cyan-500" size={38} />
 
-              <h3 className={`text-2xl font-bold ${theme.heading}`}>
-                Quick Profile
-              </h3>
+              <h3 className={`text-2xl font-bold ${theme.heading}`}>Quick Profile</h3>
 
               <div className="mt-7 space-y-5">
                 <ProfileItem
@@ -560,16 +568,13 @@ export default function App() {
                   darkMode={darkMode}
                 />
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* SKILLS */}
-      <section
-        id="skills"
-        className={`border-y py-24 ${theme.section}`}
-      >
+      <section id="skills" className={`scroll-mt-28 border-y py-24 ${theme.section}`}>
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
             number="02"
@@ -579,8 +584,8 @@ export default function App() {
           />
 
           <div className="grid gap-6 sm:grid-cols-2">
-            {skills.map((skill) => (
-              <div
+            {SKILLS.map((skill) => (
+              <Reveal
                 key={skill.category}
                 className={`group rounded-3xl border p-7 transition duration-300 hover:-translate-y-2 hover:border-cyan-400/40 ${theme.card}`}
               >
@@ -589,46 +594,37 @@ export default function App() {
                     {skill.icon}
                   </div>
 
-                  <h3 className={`text-xl font-bold ${theme.heading}`}>
-                    {skill.category}
-                  </h3>
+                  <h3 className={`text-xl font-bold ${theme.heading}`}>{skill.category}</h3>
                 </div>
 
                 <div className="mt-7 flex flex-wrap gap-3">
                   {skill.skills.map((item) => (
-                    <span
-                      key={item}
-                      className={`rounded-lg border px-3 py-2 text-sm ${theme.badge}`}
-                    >
+                    <span key={item} className={`rounded-lg border px-3 py-2 text-sm ${theme.badge}`}>
                       {item}
                     </span>
                   ))}
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
 
-          <div className={`mt-6 rounded-3xl border p-6 ${theme.card}`}>
+          <Reveal className={`mt-6 rounded-3xl border p-6 ${theme.card}`}>
             <div className="flex items-center gap-4">
               <Terminal className="text-violet-500" size={28} />
 
               <div>
-                <h3 className={`font-bold ${theme.heading}`}>
-                  Additional Technology
-                </h3>
-
+                <h3 className={`font-bold ${theme.heading}`}>Additional Technology</h3>
                 <p className={`mt-1 ${theme.text}`}>
-                  Flutter Basics — Cross-platform mobile application
-                  development.
+                  Flutter Basics — Cross-platform mobile application development.
                 </p>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* EDUCATION - KEEP YOUR EXISTING EDUCATION CONTENT */}
-      <section id="education" className="py-24">
+      {/* EDUCATION */}
+      <section id="education" className="scroll-mt-28 py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
             number="03"
@@ -638,41 +634,42 @@ export default function App() {
           />
 
           <div className="grid gap-6 lg:grid-cols-2">
-            <EducationCard
-              image={stjit}
-              title="STJ Institute Of Technology"
-              subtitle="Bachelors in Electronics and Communication Engineering"
-              date="2021 – 2025"
-              points={[
-                "Studied core electronics subjects and communication systems.",
-                "Implemented several projects based on Electronics Engineering Course.",
-                "CGPA: 8.8",
-              ]}
-              darkMode={darkMode}
-              color="cyan"
-            />
+            <Reveal>
+              <EducationCard
+                image={stjit}
+                title="STJ Institute Of Technology"
+                subtitle="Bachelors in Electronics and Communication Engineering"
+                date="2021 – 2025"
+                points={[
+                  "Studied core electronics subjects and communication systems.",
+                  "Implemented several projects based on Electronics Engineering Course.",
+                  "CGPA: 8.8",
+                ]}
+                darkMode={darkMode}
+                color="cyan"
+              />
+            </Reveal>
 
-            <EducationCard
-              image={jspiders}
-              title="JSpiders Training Institute"
-              subtitle="Java Full Stack Developer"
-              date="07/2025 – 11/2025"
-              points={[
-                "Learning Java, Spring Boot, SQL, and backend development.",
-                "Working on real-world full-stack projects with React.",
-              ]}
-              darkMode={darkMode}
-              color="violet"
-            />
+            <Reveal>
+              <EducationCard
+                image={jspiders}
+                title="JSpiders Training Institute"
+                subtitle="Java Full Stack Developer"
+                date="07/2025 – 11/2025"
+                points={[
+                  "Learning Java, Spring Boot, SQL, and backend development.",
+                  "Working on real-world full-stack projects with React.",
+                ]}
+                darkMode={darkMode}
+                color="violet"
+              />
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* EXPERIENCE */}
-      <section
-        id="experience"
-        className={`border-y py-24 ${theme.section}`}
-      >
+      <section id="experience" className={`scroll-mt-28 border-y py-24 ${theme.section}`}>
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
             number="04"
@@ -681,20 +678,16 @@ export default function App() {
             darkMode={darkMode}
           />
 
-          <div className={`rounded-3xl border p-7 sm:p-10 ${theme.card}`}>
+          <Reveal className={`rounded-3xl border p-7 sm:p-10 ${theme.card}`}>
             <div className="flex flex-col justify-between gap-5 border-b border-slate-300/20 pb-6 md:flex-row">
               <div>
                 <p className="text-sm font-bold uppercase tracking-widest text-cyan-500">
                   Software Developer
                 </p>
 
-                <h3 className={`mt-2 text-2xl font-bold ${theme.heading}`}>
-                  Thincnext
-                </h3>
+                <h3 className={`mt-2 text-2xl font-bold ${theme.heading}`}>Thincnext</h3>
 
-                <p className={`mt-2 ${theme.text}`}>
-                  Full Stack Development • Backend Focus
-                </p>
+                <p className={`mt-2 ${theme.text}`}>Full Stack Development • Backend Focus</p>
               </div>
 
               <span className="h-fit rounded-full bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-600">
@@ -716,12 +709,12 @@ export default function App() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* PROJECTS */}
-      <section id="projects" className="py-24">
+      <section id="projects" className="scroll-mt-28 py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
             number="05"
@@ -731,8 +724,8 @@ export default function App() {
           />
 
           <div className="grid gap-7 md:grid-cols-2">
-            {projects.map((project) => (
-              <div
+            {PROJECTS.map((project) => (
+              <Reveal
                 key={project.title}
                 className={`group flex flex-col overflow-hidden rounded-3xl border transition duration-300 hover:-translate-y-2 hover:border-cyan-400/40 ${theme.card}`}
               >
@@ -747,9 +740,7 @@ export default function App() {
                         {project.title}
                       </h3>
 
-                      <p className={`mt-2 ${theme.text}`}>
-                        {project.subtitle}
-                      </p>
+                      <p className={`mt-2 ${theme.text}`}>{project.subtitle}</p>
                     </div>
 
                     <div className="rounded-2xl bg-cyan-400/10 p-4 text-cyan-500 transition group-hover:rotate-6 group-hover:scale-110">
@@ -761,10 +752,7 @@ export default function App() {
                 <div className="flex flex-1 flex-col p-7">
                   <ul className="space-y-4">
                     {project.description.map((item) => (
-                      <li
-                        key={item}
-                        className={`flex gap-3 text-sm leading-6 ${theme.text}`}
-                      >
+                      <li key={item} className={`flex gap-3 text-sm leading-6 ${theme.text}`}>
                         <span className="text-cyan-500">✦</span>
                         {item}
                       </li>
@@ -773,10 +761,7 @@ export default function App() {
 
                   <div className="mt-7 flex flex-wrap gap-2">
                     {project.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className={`rounded-lg border px-3 py-2 text-xs ${theme.badge}`}
-                      >
+                      <span key={tech} className={`rounded-lg border px-3 py-2 text-xs ${theme.badge}`}>
                         {tech}
                       </span>
                     ))}
@@ -786,55 +771,49 @@ export default function App() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-8 flex items-center gap-2 text-sm font-bold text-cyan-500 transition hover:text-blue-500"
+                    className={`mt-8 flex items-center gap-2 rounded text-sm font-bold text-cyan-500 transition hover:text-blue-500 ${FOCUS_RING}`}
                   >
-                    View Project
+                    View on GitHub
                     <ArrowUpRight size={17} />
                   </a>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* CONTACT */}
-      <section
-        id="contact"
-        className={`border-t py-24 ${theme.section}`}
-      >
+      <section id="contact" className={`scroll-mt-28 border-t py-24 ${theme.section}`}>
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div
-            className={`overflow-hidden rounded-[2rem] border ${theme.card}`}
-          >
+          <Reveal className={`overflow-hidden rounded-[2rem] border ${theme.card}`}>
             <div className="grid lg:grid-cols-[1fr_1.1fr]">
               <div className="bg-gradient-to-br from-cyan-400 to-blue-600 p-8 text-white sm:p-12">
-                <p className="font-semibold uppercase tracking-[0.2em]">
-                  Get In Touch
-                </p>
+                <p className="font-semibold uppercase tracking-[0.2em]">Get In Touch</p>
 
                 <h2 className="mt-5 text-4xl font-black leading-tight sm:text-5xl">
                   Let's build something great together.
                 </h2>
 
                 <p className="mt-6 leading-7 text-white/80">
-                  I am open to Java Backend Developer and Full Stack Developer
-                  opportunities.
+                  I am open to Java Backend Developer and Full Stack Developer opportunities.
                 </p>
 
-                <a
-                  href="mailto:avaghankartik@gmail.com"
-                  className="mt-8 inline-flex items-center gap-2 rounded-xl bg-slate-950 px-6 py-4 font-bold text-white transition hover:scale-105"
-                >
-                  Send Email
-                  <ArrowUpRight size={18} />
-                </a>
+                <div className="mt-8 flex flex-wrap items-center gap-3">
+                  <a
+                    href="mailto:avaghankartik@gmail.com"
+                    className={`inline-flex items-center gap-2 rounded-xl bg-slate-950 px-6 py-4 font-bold text-white transition hover:scale-105 ${FOCUS_RING}`}
+                  >
+                    Send Email
+                    <ArrowUpRight size={18} />
+                  </a>
+
+                  <CopyEmailButton email="avaghankartik@gmail.com" />
+                </div>
               </div>
 
               <div className="p-8 sm:p-12">
-                <h3 className={`text-2xl font-bold ${theme.heading}`}>
-                  Contact Information
-                </h3>
+                <h3 className={`text-2xl font-bold ${theme.heading}`}>Contact Information</h3>
 
                 <div className="mt-8 grid gap-4 sm:grid-cols-2">
                   <ContactCard
@@ -873,52 +852,108 @@ export default function App() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* FOOTER */}
       <footer
         className={`border-t py-8 text-center ${
-          darkMode
-            ? "border-white/10 bg-slate-950"
-            : "border-slate-200 bg-white"
+          darkMode ? "border-white/10 bg-slate-950" : "border-slate-200 bg-white"
         }`}
       >
         <p className={`text-sm ${theme.text}`}>
           © 2026 Kartik R Avaghan • Built with React, Vite & Tailwind CSS
         </p>
       </footer>
+
+      {/* BACK TO TOP */}
+      {showBackToTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label="Back to top"
+          className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-xl transition hover:scale-110 ${FOCUS_RING}`}
+        >
+          <ArrowUpRight className="-rotate-45" size={20} />
+        </button>
+      )}
     </div>
   );
 }
 
 /* ================= COMPONENTS ================= */
 
+function Reveal({ children, className = "" }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:transform-none ${
+        visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function CopyEmailButton({ email }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard API unavailable — fail silently, mailto link still works
+    }
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      className={`flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-5 py-4 text-sm font-bold text-white transition hover:bg-white/20 ${FOCUS_RING}`}
+    >
+      {copied ? <Check size={16} /> : <Copy size={16} />}
+      {copied ? "Copied!" : "Copy Email"}
+    </button>
+  );
+}
+
 function SectionHeading({ number, title, subtitle, darkMode }) {
   return (
     <div className="mb-12">
       <div className="flex items-center gap-3">
-        <span className="font-mono text-sm font-bold text-cyan-500">
-          {number}
-        </span>
-
+        <span className="font-mono text-sm font-bold text-cyan-500">{number}</span>
         <div className="h-px w-12 bg-cyan-500/50" />
       </div>
 
-      <h2
-        className={`mt-4 text-4xl font-black sm:text-5xl ${
-          darkMode ? "text-white" : "text-slate-900"
-        }`}
-      >
+      <h2 className={`mt-4 text-4xl font-black sm:text-5xl ${darkMode ? "text-white" : "text-slate-900"}`}>
         {title}
       </h2>
 
-      <p
-        className={`mt-4 max-w-3xl text-lg leading-7 ${
-          darkMode ? "text-slate-400" : "text-slate-600"
-        }`}
-      >
+      <p className={`mt-4 max-w-3xl text-lg leading-7 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
         {subtitle}
       </p>
     </div>
@@ -929,22 +964,14 @@ function Feature({ icon, title, text, darkMode }) {
   return (
     <div
       className={`rounded-2xl border p-5 transition hover:-translate-y-1 hover:border-cyan-400/40 ${
-        darkMode
-          ? "border-white/10 bg-white/[0.03]"
-          : "border-slate-200 bg-slate-50"
+        darkMode ? "border-white/10 bg-white/[0.03]" : "border-slate-200 bg-slate-50"
       }`}
     >
       <div className="mb-4 text-cyan-500">{icon}</div>
 
-      <h4 className={`font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
-        {title}
-      </h4>
+      <h4 className={`font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{title}</h4>
 
-      <p
-        className={`mt-2 text-sm leading-6 ${
-          darkMode ? "text-slate-400" : "text-slate-600"
-        }`}
-      >
+      <p className={`mt-2 text-sm leading-6 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
         {text}
       </p>
     </div>
@@ -955,67 +982,37 @@ function ProfileItem({ label, value, darkMode }) {
   return (
     <div>
       <p className="text-sm text-slate-500">{label}</p>
-
-      <p
-        className={`mt-1 font-medium ${
-          darkMode ? "text-slate-200" : "text-slate-800"
-        }`}
-      >
+      <p className={`mt-1 font-medium ${darkMode ? "text-slate-200" : "text-slate-800"}`}>
         {value}
       </p>
     </div>
   );
 }
 
-function EducationCard({
-  image,
-  title,
-  subtitle,
-  date,
-  points,
-  darkMode,
-  color,
-}) {
-  const colorClass =
-    color === "violet" ? "text-violet-500" : "text-cyan-500";
+function EducationCard({ image, title, subtitle, date, points, darkMode, color }) {
+  const colorClass = color === "violet" ? "text-violet-500" : "text-cyan-500";
 
   return (
     <div
-      className={`rounded-3xl border p-6 transition duration-300 hover:-translate-y-2 ${
-        darkMode
-          ? "border-white/10 bg-white/[0.03]"
-          : "border-slate-200 bg-white shadow-lg"
+      className={`h-full rounded-3xl border p-6 transition duration-300 hover:-translate-y-2 ${
+        darkMode ? "border-white/10 bg-white/[0.03]" : "border-slate-200 bg-white shadow-lg"
       }`}
     >
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-        <img
-          src={image}
-          alt={title}
-          className="h-20 w-20 rounded-2xl object-cover shadow-xl"
-        />
+        <img src={image} alt={title} className="h-20 w-20 rounded-2xl object-cover shadow-xl" />
 
         <div>
-          <h2
-            className={`text-xl font-bold ${
-              darkMode ? "text-white" : "text-slate-900"
-            }`}
-          >
+          <h2 className={`text-xl font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
             {title}
           </h2>
 
-          <p className={`mt-2 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-            {subtitle}
-          </p>
+          <p className={`mt-2 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>{subtitle}</p>
 
           <p className={`mt-3 font-semibold ${colorClass}`}>{date}</p>
         </div>
       </div>
 
-      <ul
-        className={`mt-7 space-y-3 ${
-          darkMode ? "text-slate-400" : "text-slate-600"
-        }`}
-      >
+      <ul className={`mt-7 space-y-3 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
         {points.map((point) => (
           <li key={point} className="flex gap-3">
             <span className={colorClass}>•</span>
@@ -1027,23 +1024,14 @@ function EducationCard({
   );
 }
 
-function ContactCard({
-  icon,
-  title,
-  value,
-  href,
-  external,
-  darkMode,
-}) {
+function ContactCard({ icon, title, value, href, external, darkMode }) {
   return (
     <a
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className={`group rounded-2xl border p-5 transition hover:-translate-y-1 hover:border-cyan-400/40 ${
-        darkMode
-          ? "border-white/10 bg-white/[0.03]"
-          : "border-slate-200 bg-slate-50"
+      className={`group rounded-2xl border p-5 transition hover:-translate-y-1 hover:border-cyan-400/40 ${FOCUS_RING} ${
+        darkMode ? "border-white/10 bg-white/[0.03]" : "border-slate-200 bg-slate-50"
       }`}
     >
       <div className="flex items-center gap-3">
