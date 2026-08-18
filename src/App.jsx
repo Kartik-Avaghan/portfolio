@@ -88,7 +88,7 @@ export default function App() {
             <img
               src={kartik}
               alt="Kartik Avaghan"
-              className="w-72 h-72 rounded-full shadow-2xl object-cover border-4 border-white"
+              className="w-82 h-82 rounded-full shadow-2xl object-cover border-4 border-white"
             />
           </div>
         </div>
