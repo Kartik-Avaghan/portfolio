@@ -136,7 +136,7 @@ const FLOATING_TECH = [
     name: "Spring Boot",
     image: springBootImage,
     className:
-    "left-1/6 -top-5 hidden -translate-x-1/2 sm:flex",
+    "left-10 -top-10  sm:left-10 sm:-top-10",
       
     duration: 6,
     
