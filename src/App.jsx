@@ -136,7 +136,7 @@ const FLOATING_TECH = [
     name: "Spring Boot",
     image: springBootImage,
     className:
-    "left-10 -top-10  sm:left-10 sm:-top-10",
+    "left-10 -top-5  sm:left-10 sm:-top-10",
       
     duration: 6,
     
@@ -184,6 +184,10 @@ const FLOATING_TECH = [
     delay: 0.8,
   },
 ];
+
+
+
+
 
 const PROJECTS = [
   {
@@ -1575,13 +1579,13 @@ function HeroProfile({
     );
   };
 
-  return (
-    <div className="relative perspective-container">
-      {/* ROTATING RINGS */}
-      <div className="absolute inset-0 -z-10">
-        <div className="profile-ring profile-ring-one" />
-        <div className="profile-ring profile-ring-two" />
-      </div>
+ return (
+  <div className="relative isolate mx-auto w-full max-w-[320px] perspective-container sm:max-w-[420px]">
+  
+  <div className="pointer-events-none absolute inset-0 -z-10">
+    <div className="profile-ring profile-ring-one" />
+    <div className="profile-ring profile-ring-two" />
+  </div>
 
       {/* FLOATING TECH IMAGES */}
       {FLOATING_TECH.map((tech) => (
@@ -1694,9 +1698,9 @@ function HeroProfile({
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className={`absolute -right-10 top-10 z-30 rounded-2xl border px-4 py-3 shadow-xl backdrop-blur-xl sm:-right-10 ${theme.secondaryCard}`}
+        className={`absolute right-0 top-10 z-30 w-24 rounded-2xl border px-3 py-3 shadow-xl backdrop-blur-xl sm:-right-10 sm:w-auto sm:px-4 ${theme.secondaryCard}`}
       >
-        <p className={`text-xs ${theme.text}`}>
+        <p className={`text-[10px] sm:text-xs ${theme.text}`}>
           Primary Focus
         </p>
 
