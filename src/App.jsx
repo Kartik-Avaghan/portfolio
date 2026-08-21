@@ -1591,7 +1591,7 @@ function HeroProfile({
       {FLOATING_TECH.map((tech) => (
         <motion.div
           key={tech.name}
-          className={`absolute z-20 ${tech.className}`}
+          className={`absolute z-20 hidden sm:block ${tech.className}`}
           animate={
             shouldReduceMotion
               ? {}
@@ -1608,7 +1608,7 @@ function HeroProfile({
           }}
         >
           <div
-            className={`flex h-14 w-14 items-center justify-center rounded-2xl border p-2.5 shadow-xl backdrop-blur-xl sm:h-16 sm:w-16 ${
+            className={`flex  h-14 w-14 items-center justify-center rounded-2xl border p-2.5 shadow-xl backdrop-blur-xl sm:h-16 sm:w-16 ${
               darkMode
                 ? "border-white/10 bg-slate-900/75"
                 : "border-white bg-white/85"
