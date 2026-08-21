@@ -1591,7 +1591,7 @@ function HeroProfile({
       {FLOATING_TECH.map((tech) => (
         <motion.div
           key={tech.name}
-          className={`absolute z-20 hidden sm:block ${tech.className}`}
+          className={`absolute z-20  ${tech.className}`}
           animate={
             shouldReduceMotion
               ? {}
@@ -1698,7 +1698,7 @@ function HeroProfile({
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className={`absolute right-0 top-10 z-30 w-24 rounded-2xl border px-3 py-3 shadow-xl backdrop-blur-xl sm:-right-10 sm:w-auto sm:px-4 ${theme.secondaryCard}`}
+        className={`absolute right-0 -top-5 z-30 w-24 rounded-2xl border px-3 py-3 shadow-xl backdrop-blur-xl sm:-right-10 sm:w-auto sm:px-4 ${theme.secondaryCard}`}
       >
         <p className={`text-[10px] sm:text-xs ${theme.text}`}>
           Primary Focus
