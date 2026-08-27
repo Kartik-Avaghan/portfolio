@@ -244,7 +244,7 @@ const PROJECTS = [
       "Created a responsive React.js chat interface.",
     ],
     stack: ["Java", "Spring Boot", "Spring AI", "Ollama", "React.js"],
-    link: "https://github.com/Kartik-Avaghan",
+    link: "https://github.com/Kartik-Avaghan/openAi_chatbot",
   },
 ];
 
